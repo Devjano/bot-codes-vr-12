@@ -1,13 +1,41 @@
-const Discord = require("discord.js");
-const jano = new Discord.Client();
+const express = require("express");
+const app = express();
+const dreams = [
+  "Find and count some sheep",
+  "Climb a really tall mountain",
+  "Wash the dishes"
+];
+app.use(express.static("public"));
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/views/index.html");
+});
+app.get("/dreams", (request, response) => {
+  response.json(dreams);
+});
+const listener = app.listen(process.env.PORT, () => {
+  console.log("Your app is listening on port " + listener.address().port);
+});
+
+
+
 const fs = require("fs");
-const moment = require("moment");
-const ms = require("ms");
+const Discord = require ("discord.js")
+const moment = require ("moment")
+const jano = new Discord.Client();
 const prefix = "/";
-const { JANO, Collection } = require("discord.js");
-// Collections by jano
-jano.commands = new Collection();
-jano.aliases = new Collection();
+
+jano.login("Nzk0NDYwNTE1MzE3MTg2NTcw.X-7JAw.Bnr3OD5opN0-lqC6O50-KO5chdg"); 
+
+jano.on("ready", async () => {
+  console.log(`Logged in as ${jano.user.username}!`);
+  jano.user.setStatus("ONLINE");
+  jano.user.setActivity(`/help`, { type: "WATCHING" });
+  jano.guilds.cache.forEach(g => {
+    if (g.member(jano.user).hasPermission("ADMINISTRATOR")) {
+      g.fetchInvites().then(guildInvites => {});
+    }
+  });
+});
 
 jano.on("message", message => {
   if (message.content === "/help") {
@@ -19,69 +47,69 @@ jano.on("message", message => {
 __**Public Command**__
 
 ==================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code jwab
+/code jwab
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code anti bot
+/code anti bot
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code U
+/code U
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code ban
+/code ban
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code avatar
+/code avatar
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code support
+/code support
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code avatar acc
+/code avatar acc
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code dzha link
+/code dzha link
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code ticked
+/code ticked
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code kick
+/code kick
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code sbot
+/code sbot
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code oflin
+/code oflin
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code stop
+/code stop
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code start
+/code start
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code token
+/code token
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code anti reklam
+/code anti reklam
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code react
+/code react
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code allbot
+/code allbot
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code server
+/code server
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code here
+/code here
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code everyone
+/code everyone
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code say
+/code say
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code clear
+/code clear
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code mute
+/code mute
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/code unmute
+/code unmute
 ===================
 
 { bo dawa krdne project la glitch }
 
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/glitch acc1
+/glitch acc1
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/glitch acc2
+/glitch acc2
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/glitch spam
+/glitch spam
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/glitch securety
+/glitch securety
 ===================
-<a:jano_1:799896150592847872><a:jano_3:799897611142037554>/glitch system
+/glitch system
 ===================
 /about {بـــۆ زا نیـــاری لـــەســـەر بـــۆ تـــە کــــە }
 
@@ -671,4 +699,4 @@ jano.on("message", message => {
   }
 });
 
-jano.login("Nzk0NDYwNTE1MzE3MTg2NTcw.X-7JAw.sLAj-w5wKlRShM9aQFIhgE_ysic"); /////
+
